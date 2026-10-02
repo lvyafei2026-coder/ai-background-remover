@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Background Remover — Remove Image Backgrounds in Seconds (Free)</title>
+<meta name="description" content="Free AI background remover. Upload any image and get a transparent PNG in seconds. No sign-up, no upload to third-party servers. Powered by Cloudflare Images.">
+<meta name="keywords" content="remove background, background remover, transparent background, remove bg, ai background remover">
+<meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large">
+<meta name="theme-color" content="#0891b2">
+
+<link rel="canonical" href="https://toolara.dev/ai-background-remover/">
+<link rel="alternate" hreflang="en" href="https://toolara.dev/ai-background-remover/">
+<link rel="alternate" hreflang="zh-Hans" href="https://toolara.dev/ai-background-remover/zh/">
+<link rel="alternate" hreflang="x-default" href="https://toolara.dev/ai-background-remover/">
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="AI Background Remover — Remove Image Backgrounds">
+<meta property="og:description" content="Upload any image, get a transparent PNG in seconds.">
+<meta property="og:url" content="https://toolara.dev/ai-background-remover/">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "AI Background Remover",
+  "url": "https://toolara.dev/ai-background-remover/",
+  "applicationCategory": "UtilityApplication",
+  "operatingSystem": "Any",
+  "description": "Free AI tool that removes image backgrounds and returns transparent PNG files.",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+}
+</script>
+
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<header class="hero">
+  <div class="lang-switch">
+    <select id="langSelect" onchange="setLang(this.value)" aria-label="Language">
+      <option value="en">English</option>
+      <option value="zh">简体中文</option>
+    </select>
+  </div>
+  <div class="hero-inner">
+    <div class="hero-badge">🖼️ AI-powered</div>
+    <h1 data-i18n="title">AI Background Remover</h1>
+    <p data-i18n="subtitle">Upload any image. Get a transparent PNG in seconds. No sign-up required.</p>
+  </div>
+</header>
+
+<main class="wrap">
+  <section class="card">
+    <h2 class="visually-hidden" data-i18n="calcHeading">Background remover</h2>
+
+    <div class="upload-zone" id="uploadZone">
+      <input type="file" id="fileInput" accept="image/jpeg,image/png,image/webp" style="display:none;">
+      <div class="upload-content" id="uploadContent">
+        <div class="upload-icon">📁</div>
+        <div class="upload-text" data-i18n="uploadText">Click to upload or drag an image here</div>
+        <div class="upload-hint" data-i18n="uploadHint">JPEG, PNG, or WebP · Max 10MB</div>
+      </div>
+    </div>
+
+    <div id="preview" class="preview" style="display:none;">
+      <div class="preview-label" data-i18n="previewLabel">Original image</div>
+      <img id="previewImg" class="preview-img" alt="Preview">
+    </div>
+
+    <button class="calc" type="button" id="removeBtn" onclick="removeBackground()" data-i18n="calcBtn" disabled>Remove background</button>
+
+    <div id="loading" class="loading" style="display:none;">
+      <div class="spinner"></div>
+      <div data-i18n="loadingText">Removing background...</div>
+    </div>
+
+    <div id="error" class="error" style="display:none;"></div>
+
+    <div id="result" role="region" aria-live="polite">
+      <div class="result-header">
+        <div class="result-label" data-i18n="resultLabel">Result (transparent PNG)</div>
+        <button class="copy-btn" type="button" onclick="downloadResult()" data-i18n="downloadBtn">Download</button>
+      </div>
+      <div class="result-preview">
+        <img id="resultImg" class="result-img" alt="Result">
+      </div>
+      <div class="result-meta" id="resultMeta"></div>
+      <div class="result-disclaimer" data-i18n="resultDisclaimer">Your image is processed in memory and not stored. The result is a transparent PNG.</div>
+    </div>
+  </section>
+
+  <section>
+    <h2 data-i18n="whatIsTitle">What does this tool do?</h2>
+    <p data-i18n="whatIsText">This tool uses AI to automatically detect the main subject in your image and remove the background. It works on product photos, portraits, logos, and any image where you want a clean cutout. The result is a transparent PNG you can place on any background.</p>
+  </section>
+
+  <section>
+    <h2 data-i18n="useCasesTitle">Common use cases</h2>
+    <ul>
+      <li data-i18n="use1"><strong>E-commerce product photos</strong> — Get clean cutouts for Amazon, Etsy, or Shopify listings.</li>
+      <li data-i18n="use2"><strong>Presentations and slides</strong> — Drop subjects onto custom backgrounds without a designer.</li>
+      <li data-i18n="use3"><strong>Social media graphics</strong> — Create transparent stickers and overlays.</li>
+      <li data-i18n="use4"><strong>Design mockups</strong> — Place people or objects into new scenes.</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2 data-i18n="faqTitle">Frequently asked questions</h2>
+    <h3 data-i18n="faq1q">Is this tool free?</h3>
+    <p data-i18n="faq1a">Yes. The tool uses Cloudflare Images, which includes 5,000 free background removal transformations per month. For normal personal use, you won't hit the limit.</p>
+
+    <h3 data-i18n="faq2q">Is my image stored?</h3>
+    <p data-i18n="faq2a">No. Your image is processed in memory and discarded immediately after the result is returned. Nothing is stored, logged, or used for training.</p>
+
+    <h3 data-i18n="faq3q">What image formats are supported?</h3>
+    <p data-i18n="faq3a">JPEG, PNG, and WebP. Maximum file size is 10MB. The output is always a transparent PNG.</p>
+
+    <h3 data-i18n="faq4q">How accurate is the background removal?</h3>
+    <p data-i18n="faq4a">The AI works best on images with a clear, distinct subject — product photos, portraits, and graphics. Complex scenes with multiple objects or very fine details (like hair) may have imperfect edges. Review the result before using it in production.</p>
+
+    <h3 data-i18n="faq5q">Can I use the result commercially?</h3>
+    <p data-i18n="faq5a">Yes. The tool doesn't add watermarks or restrict usage. You own the result. However, make sure you have the rights to the original image.</p>
+
+    <div class="disclaimer" data-i18n="disclaimer"><strong>Note:</strong> This tool processes images in memory and returns a transparent PNG. Review the result before using it in production.</div>
+  </section>
+</main>
+
+<footer class="footer" data-i18n="footer">Runs on Cloudflare Images. Your image is not stored.</footer>
+
+<script src="js/i18n.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,13 @@
+name = "ai-background-remover"
+main = "src/index.js"
+compatibility_date = "2026-09-27"
+
+[images]
+binding = "IMAGES"
+
+[assets]
+directory = "./public"
+binding = "ASSETS"
+not_found_handling = "single-page-application"
+html_handling = "none"
+run_worker_first = ["/*"]
