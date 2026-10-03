@@ -49,13 +49,13 @@ async function handleRemoveBg(request, env) {
     const bytes = await file.arrayBuffer();
 
     // 使用 Images binding 进行背景移除
-    const response = await env.IMAGES
-      .input(bytes)
-      .transform({
-        segment: 'foreground'
-      })
-      .output({ format: 'image/png' })
-      .response();
+    const response = (await env.IMAGES
+        .input(bytes)
+        .transform({
+          segment: 'foreground'
+        })
+        .output({ format: 'image/png' })
+    ).response();
 
     return new Response(response.body, {
       status: 200,
