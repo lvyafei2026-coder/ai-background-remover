@@ -65,7 +65,11 @@ async function handleRemoveBg(request, env) {
       }
     });
   } catch (err) {
-    console.error('Background removal error:', err);
-    return json({ error: 'Processing failed. Please try again.' }, 500);
+    console.error('Background removal error:', {
+      message: err.message,
+      code: err.code,
+      name: err.name
+    });
+    return json({ error: 'Processing failed.', detail: err.message }, 500);
   }
 }
