@@ -8,9 +8,11 @@ const previewImg = document.getElementById('previewImg');
 const removeBtn = document.getElementById('removeBtn');
 const loadingEl = document.getElementById('loading');
 const errorEl = document.getElementById('error');
-const resultEl = document.getElementById('result');
+const emptyState = document.getElementById('emptyState');
 const resultImg = document.getElementById('resultImg');
+const resultActions = document.getElementById('resultActions');
 const resultMeta = document.getElementById('resultMeta');
+const resultDisclaimer = document.getElementById('resultDisclaimer');
 
 uploadZone.addEventListener('click', () => fileInput.click());
 
@@ -35,6 +37,9 @@ fileInput.addEventListener('change', () => {
   if (file) handleFile(file);
 });
 
+// Click the preview to replace the photo
+preview.addEventListener('click', () => fileInput.click());
+
 function handleFile(file) {
   const tr = (window.__i18n && window.__i18n.t) || {};
 
@@ -51,11 +56,18 @@ function handleFile(file) {
   selectedFile = file;
   resultBlob = null;
   errorEl.style.display = 'none';
-  resultEl.classList.remove('show');
 
+  // Hide previous result, back to empty state
+  resultImg.style.display = 'none';
+  resultActions.style.display = 'none';
+  resultDisclaimer.style.display = 'none';
+  emptyState.style.display = 'block';
+
+  // Replace the upload zone with the preview (panel height stays constant)
   const url = URL.createObjectURL(file);
   previewImg.src = url;
-  preview.style.display = 'block';
+  uploadZone.style.display = 'none';
+  preview.style.display = 'flex';
   removeBtn.disabled = false;
 }
 
@@ -69,7 +81,10 @@ async function removeBackground() {
   }
 
   errorEl.style.display = 'none';
-  resultEl.classList.remove('show');
+  resultImg.style.display = 'none';
+  resultActions.style.display = 'none';
+  resultDisclaimer.style.display = 'none';
+  emptyState.style.display = 'none';
   removeBtn.disabled = true;
   loadingEl.style.display = 'flex';
 
@@ -83,6 +98,8 @@ async function removeBackground() {
     });
 
     if (!res.ok) {
+      loadingEl.style.display = 'none';
+      emptyState.style.display = 'block';
       const data = await res.json().catch(() => ({}));
       showError(data.error || (tr.errGeneric || 'Processing failed.'));
       return;
@@ -91,14 +108,18 @@ async function removeBackground() {
     resultBlob = await res.blob();
     const url = URL.createObjectURL(resultBlob);
     resultImg.src = url;
+    resultImg.style.display = 'block';
+    loadingEl.style.display = 'none';
+    resultActions.style.display = 'flex';
+    resultDisclaimer.style.display = 'block';
     resultMeta.textContent = (tr.metaSize || 'Result size:') + ' ' + (resultBlob.size / 1024).toFixed(1) + ' KB';
-    resultEl.classList.add('show');
   } catch (err) {
     console.error(err);
+    loadingEl.style.display = 'none';
+    emptyState.style.display = 'block';
     showError(tr.errNetwork || 'Network error. Please try again.');
   } finally {
     removeBtn.disabled = false;
-    loadingEl.style.display = 'none';
   }
 }
 
@@ -117,7 +138,19 @@ function downloadResult() {
 function showError(msg) {
   errorEl.textContent = msg;
   errorEl.style.display = 'block';
+  errorEl.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
 }
+
+// Before/after comparison sliders in the examples section
+document.querySelectorAll('.ex-compare').forEach((box) => {
+  const range = box.querySelector('input[type="range"]');
+  if (!range) return;
+  const set = (v) => {
+    box.style.setProperty('--pos', v + '%');
+  };
+  range.addEventListener('input', () => set(range.value));
+  set(range.value);
+});
 
 window.removeBackground = removeBackground;
 window.downloadResult = downloadResult;

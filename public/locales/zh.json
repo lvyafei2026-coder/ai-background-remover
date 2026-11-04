@@ -35,5 +35,16 @@
   "errSize": "图片必须小于 10MB。",
   "errNoFile": "请先选择一张图片。",
   "errGeneric": "处理失败，请重试。",
-  "errNetwork": "网络错误，请重试。"
+  "errNetwork": "网络错误，请重试。",
+  "panelOriginal": "原图",
+  "panelResult": "抠图结果",
+  "changePhoto": "点击更换照片",
+  "emptyHint": "透明 PNG 会显示在这里",
+  "examplesTitle": "效果预览",
+  "examplesText": "以下是本工具的真实输出——拖动滑块对比原图与抠图效果。",
+  "tagBefore": "原图",
+  "tagAfter": "抠图",
+  "exPortrait": "人像",
+  "exPet": "宠物",
+  "exProduct": "商品"
 }

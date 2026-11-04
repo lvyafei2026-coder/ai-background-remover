@@ -38,7 +38,7 @@
 }
 </script>
 
-<link rel="stylesheet" href="/css/style.css">
+<link rel="stylesheet" href="/css/style.css?v=20261104a">
 <style id="footer-groups-css">
 .site-footer-grid{grid-template-columns:minmax(0,0.85fr) minmax(0,2.65fr)!important;gap:40px!important}
 .site-footer-column:nth-child(2){grid-row:1/span 2!important}
@@ -85,42 +85,87 @@
 </header>
 
 <main class="wrap">
-  <section class="card">
-    <h2 class="visually-hidden" data-i18n="calcHeading">Background remover</h2>
-
-    <div class="upload-zone" id="uploadZone">
-      <input type="file" id="fileInput" accept="image/jpeg,image/png,image/webp" style="display:none;">
-      <div class="upload-content" id="uploadContent">
-        <div class="upload-icon">📁</div>
-        <div class="upload-text" data-i18n="uploadText">Click to upload or drag an image here</div>
-        <div class="upload-hint" data-i18n="uploadHint">JPEG, PNG, or WebP · Max 10MB</div>
+  <section class="studio" id="studio">
+    <div class="panel panel-input">
+      <div class="panel-head"><span class="panel-step">1</span><span data-i18n="panelOriginal">Original</span></div>
+      <div class="panel-body">
+        <div class="upload-zone" id="uploadZone">
+          <input type="file" id="fileInput" accept="image/jpeg,image/png,image/webp" style="display:none;">
+          <div class="upload-content" id="uploadContent">
+            <div class="upload-icon">📁</div>
+            <div class="upload-text" data-i18n="uploadText">Click to upload or drag an image here</div>
+            <div class="upload-hint" data-i18n="uploadHint">JPEG, PNG, or WebP · Max 10MB</div>
+          </div>
+        </div>
+        <div id="preview" class="preview" style="display:none;">
+          <img id="previewImg" class="preview-img" alt="Preview">
+          <div class="preview-change" data-i18n="changePhoto">Click to change photo</div>
+        </div>
       </div>
+      <button class="calc" type="button" id="removeBtn" onclick="removeBackground()" data-i18n="calcBtn" disabled>Remove background</button>
     </div>
 
-    <div id="preview" class="preview" style="display:none;">
-      <div class="preview-label" data-i18n="previewLabel">Original image</div>
-      <img id="previewImg" class="preview-img" alt="Preview">
-    </div>
+    <div class="panel-arrow" aria-hidden="true">➜</div>
 
-    <button class="calc" type="button" id="removeBtn" onclick="removeBackground()" data-i18n="calcBtn" disabled>Remove background</button>
-
-    <div id="loading" class="loading" style="display:none;">
-      <div class="spinner"></div>
-      <div data-i18n="loadingText">Removing background...</div>
-    </div>
-
-    <div id="error" class="error" style="display:none;"></div>
-
-    <div id="result" role="region" aria-live="polite">
-      <div class="result-header">
-        <div class="result-label" data-i18n="resultLabel">Result (transparent PNG)</div>
-        <button class="copy-btn" type="button" onclick="downloadResult()" data-i18n="downloadBtn">Download</button>
+    <div class="panel panel-output">
+      <div class="panel-head"><span class="panel-step step-alt">2</span><span data-i18n="panelResult">Cutout</span></div>
+      <div class="panel-body output-body">
+        <div class="output-checker" id="outputChecker">
+          <div class="empty-state" id="emptyState">
+            <div class="empty-icon">✂️</div>
+            <div class="empty-text" data-i18n="emptyHint">Your transparent PNG will appear here</div>
+          </div>
+          <div id="loading" class="loading" style="display:none;">
+            <div class="spinner"></div>
+            <div data-i18n="loadingText">Removing background...</div>
+          </div>
+          <img id="resultImg" class="result-img" alt="Result" style="display:none;">
+        </div>
+        <div class="result-actions" id="resultActions" style="display:none;">
+          <button class="copy-btn" type="button" onclick="downloadResult()" data-i18n="downloadBtn">Download</button>
+          <span class="result-meta" id="resultMeta"></span>
+        </div>
+        <div class="result-disclaimer" id="resultDisclaimer" style="display:none;" data-i18n="resultDisclaimer">Your image is processed in memory and not stored. The result is a transparent PNG.</div>
       </div>
-      <div class="result-preview">
-        <img id="resultImg" class="result-img" alt="Result">
-      </div>
-      <div class="result-meta" id="resultMeta"></div>
-      <div class="result-disclaimer" data-i18n="resultDisclaimer">Your image is processed in memory and not stored. The result is a transparent PNG.</div>
+    </div>
+  </section>
+
+  <div id="error" class="error" style="display:none;"></div>
+
+  <section class="examples-section">
+    <h2 data-i18n="examplesTitle">See it in action</h2>
+    <p class="examples-sub" data-i18n="examplesText">Real outputs from this tool — drag the slider to compare the original photo with the cutout.</p>
+    <div class="ex-row">
+      <figure class="ex-item">
+        <div class="ex-compare" style="--pos:55%;">
+          <img class="ex-before" src="/examples/portrait.jpg" alt="Before">
+          <div class="ex-after"><img src="/examples/portrait.png" alt="After"></div>
+          <span class="ex-tag tag-before" data-i18n="tagBefore">Before</span>
+          <span class="ex-tag tag-after" data-i18n="tagAfter">After</span>
+          <input type="range" min="0" max="100" value="55" aria-label="Compare before and after">
+        </div>
+        <figcaption data-i18n="exPortrait">Portrait</figcaption>
+      </figure>
+      <figure class="ex-item">
+        <div class="ex-compare" style="--pos:55%;">
+          <img class="ex-before" src="/examples/pet.jpg" alt="Before">
+          <div class="ex-after"><img src="/examples/pet.png" alt="After"></div>
+          <span class="ex-tag tag-before" data-i18n="tagBefore">Before</span>
+          <span class="ex-tag tag-after" data-i18n="tagAfter">After</span>
+          <input type="range" min="0" max="100" value="55" aria-label="Compare before and after">
+        </div>
+        <figcaption data-i18n="exPet">Pet</figcaption>
+      </figure>
+      <figure class="ex-item">
+        <div class="ex-compare" style="--pos:55%;">
+          <img class="ex-before" src="/examples/product.jpg" alt="Before">
+          <div class="ex-after"><img src="/examples/product.png" alt="After"></div>
+          <span class="ex-tag tag-before" data-i18n="tagBefore">Before</span>
+          <span class="ex-tag tag-after" data-i18n="tagAfter">After</span>
+          <input type="range" min="0" max="100" value="55" aria-label="Compare before and after">
+        </div>
+        <figcaption data-i18n="exProduct">Product</figcaption>
+      </figure>
     </div>
   </section>
 
@@ -172,6 +217,6 @@
 </footer>
 
 <script src="/js/i18n.js"></script>
-<script src="/js/app.js"></script>
+<script src="/js/app.js?v=20261104a"></script>
 </body>
 </html>

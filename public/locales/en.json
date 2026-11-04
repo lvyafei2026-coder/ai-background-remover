@@ -35,5 +35,16 @@
   "errSize": "Image must be under 10MB.",
   "errNoFile": "Please select an image first.",
   "errGeneric": "Processing failed. Please try again.",
-  "errNetwork": "Network error. Please try again."
+  "errNetwork": "Network error. Please try again.",
+  "panelOriginal": "Original",
+  "panelResult": "Cutout",
+  "changePhoto": "Click to change photo",
+  "emptyHint": "Your transparent PNG will appear here",
+  "examplesTitle": "See it in action",
+  "examplesText": "Real outputs from this tool — drag the slider to compare the original photo with the cutout.",
+  "tagBefore": "Before",
+  "tagAfter": "After",
+  "exPortrait": "Portrait",
+  "exPet": "Pet",
+  "exProduct": "Product"
 }
