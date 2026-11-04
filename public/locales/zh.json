@@ -1,5 +1,5 @@
 {
-  "title": "AI 一键抠图工具",
+  "title": "Toolara Background",
   "subtitle": "上传任意图片，几秒内获得透明背景的 PNG。无需注册。",
   "calcHeading": "背景移除",
   "uploadText": "点击上传或将图片拖到此处",
@@ -46,5 +46,12 @@
   "tagAfter": "抠图",
   "exPortrait": "人像",
   "exPet": "宠物",
-  "exProduct": "商品"
+  "exProduct": "商品",
+  "heroTitle": "AI 一键抠图工具",
+  "how1t": "上传照片",
+  "how1d": "拖拽或点击上传，支持 JPEG、PNG、WebP，最大 10MB。",
+  "how2t": "AI 识别主体",
+  "how2d": "模型自动找到前景主体并抹除背景。",
+  "how3t": "下载透明 PNG",
+  "how3d": "得到可直接用于设计稿或商品列表的透明 PNG。"
 }

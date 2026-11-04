@@ -1,5 +1,5 @@
 {
-  "title": "AI Background Remover",
+  "title": "Toolara Background",
   "subtitle": "Upload any image. Get a transparent PNG in seconds. No sign-up required.",
   "calcHeading": "Background remover",
   "uploadText": "Click to upload or drag an image here",
@@ -46,5 +46,12 @@
   "tagAfter": "After",
   "exPortrait": "Portrait",
   "exPet": "Pet",
-  "exProduct": "Product"
+  "exProduct": "Product",
+  "heroTitle": "AI Background Remover",
+  "how1t": "Upload your photo",
+  "how1d": "Drag & drop or click to upload. JPEG, PNG, or WebP up to 10MB.",
+  "how2t": "AI detects the subject",
+  "how2d": "The model finds the foreground and erases the background automatically.",
+  "how3t": "Download your PNG",
+  "how3d": "Get a transparent PNG you can drop into any design or store listing."
 }
