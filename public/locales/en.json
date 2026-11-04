@@ -53,5 +53,9 @@
   "how2t": "AI detects the subject",
   "how2d": "The model finds the foreground and erases the background automatically.",
   "how3t": "Download your PNG",
-  "how3d": "Get a transparent PNG you can drop into any design or store listing."
+  "how3d": "Get a transparent PNG you can drop into any design or store listing.",
+  "badgeAi": "AI-powered",
+  "badgeFree": "100% free",
+  "badgeNoSignup": "No sign-up",
+  "badgePng": "Transparent PNG"
 }

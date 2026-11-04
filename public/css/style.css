@@ -32,6 +32,7 @@ body { margin: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "P
 
 .hero { padding: 52px 20px 34px; }
 .hero-inner { max-width: 720px; margin: 0 auto; text-align: center; }
+.hero-badges { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin-bottom: 18px; }
 .hero-badge {
   display: inline-block;
   background: rgba(6,182,212,0.20);
@@ -42,15 +43,13 @@ body { margin: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "P
   font-size: 0.8rem;
   font-weight: 600;
   letter-spacing: 0.04em;
-  margin-bottom: 18px;
 }
 .hero h1 { font-size: 2.1rem; margin: 0 0 12px; font-weight: 800; letter-spacing: -0.02em; }
 .hero p { margin: 0 auto; opacity: 0.92; font-size: 1rem; max-width: 560px; }
 
 .studio-area { max-width: 980px; margin: 0 auto; padding: 0 20px; }
 .wrap { max-width: 980px; margin: 0 auto; padding: 8px 20px 64px; }
-main.wrap > section { max-width: 760px; margin-left: auto; margin-right: auto; }
-main.wrap > section.examples-section { max-width: none; }
+main.wrap > section { max-width: none; }
 
 /* ===== Studio: glass two-panel cutout bench on gradient ===== */
 .studio {
@@ -278,7 +277,7 @@ li { margin-bottom: 8px; line-height: 1.65; }
   .upload-zone { padding: 28px 14px; }
 }
 /* Toolara site navigation */
-.site-header { position: relative; z-index: 10; background: rgba(255,255,255,0.96); border-bottom: 1px solid var(--border, #e2e8f0); }
+.site-header { position: sticky; top: 0; z-index: 50; background: rgba(255,255,255,0.85); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border-bottom: 1px solid var(--border, #e2e8f0); }
 .site-header-inner { max-width: 1120px; min-height: 68px; margin: 0 auto; padding: 10px 20px; display: flex; align-items: center; justify-content: space-between; gap: 20px; }
 .site-brand { min-width: 0; display: flex; align-items: center; gap: 10px; color: var(--text, #0f1c2e); text-decoration: none; font-weight: 700; }
 .site-brand-logo { width: 38px; height: 38px; flex: 0 0 38px; border-radius: 10px; display: block; }

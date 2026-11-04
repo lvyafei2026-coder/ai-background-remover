@@ -53,5 +53,9 @@
   "how2t": "AI 识别主体",
   "how2d": "模型自动找到前景主体并抹除背景。",
   "how3t": "下载透明 PNG",
-  "how3d": "得到可直接用于设计稿或商品列表的透明 PNG。"
+  "how3d": "得到可直接用于设计稿或商品列表的透明 PNG。",
+  "badgeAi": "AI 驱动",
+  "badgeFree": "完全免费",
+  "badgeNoSignup": "无需注册",
+  "badgePng": "透明 PNG"
 }
